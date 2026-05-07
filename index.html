@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>haidaraee - Personal Space</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"DM Sans"', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        'bg-beige': '#f4f0ea',
+                        'window-header': '#f1f1f1',
+                        'text-main': '#333333',
+                        'text-muted': '#777777',
+                        'pastel-pink': '#FFD1DC',
+                        'pastel-blue': '#AEC6CF',
+                        'pastel-green': '#B1EED3',
+                        'pastel-yellow': '#FDFD96',
+                    },
+                    animation: {
+                        'icon-pop': 'pop 0.3s ease-out forwards',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pop: {
+                            '0%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.2)' },
+                            '100%': { transform: 'scale(1.1)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f4f0ea;
+            color: #333333;
+        }
+
+        .window-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid #eaeaea;
+        }
+
+        .window-header-bar {
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #eaeaea;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .window-header-centered {
+            justify-content: space-between;
+        }
+
+        .window-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background-color: white;
+            border: 1px solid #eaeaea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #888;
+        }
+
+        .phase-content {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        
+        .hide-phase {
+            display: none !important;
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: scale(0.98);
+        }
+
+        .fade-in {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d1d1;
+            border-radius: 10px;
+        }
+        
+        .social-link:hover .social-icon {
+            animation: wiggle 0.5s ease-in-out infinite;
+            color: inherit;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col items-center justify-center p-4 py-10 selection:bg-pastel-blue selection:text-text-main relative overflow-x-hidden">
+
+    <div class="fixed inset-0 z-0 pointer-events-none flex justify-between items-end overflow-hidden">
+        <img src="https://placehold.co/400x600/transparent/AEC6CF?text=Marin+Kitagawa+PNG" alt="Marin Kitagawa" class="w-40 md:w-64 opacity-40 mix-blend-multiply transform -scale-x-100 -ml-4 md:ml-10 mb-0">
+        
+        <img src="https://placehold.co/400x600/transparent/FFD1DC?text=Taiki+Inomata+PNG" alt="Taiki Inomata" class="w-40 md:w-64 opacity-40 mix-blend-multiply -mr-4 md:mr-10 mb-0">
+    </div>
+
+    <main class="relative z-10 w-full max-w-[400px] flex flex-col gap-4">
+
+        <section class="window-card w-full shadow-lg">
+            <div class="window-header-bar">
+                <div class="window-btn"><i class="fa-solid fa-user"></i></div>
+                <div class="window-btn"><i class="fa-solid fa-minus"></i></div>
+                <div class="window-btn"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            
+            <div class="p-4 flex flex-col items-center">
+                <div class="w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 mb-4 border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop" alt="Profile" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                </div>
+                <div class="w-full text-left px-1">
+                    <h1 class="font-display text-2xl font-bold tracking-tight text-text-main">haidaraee</h1>
+                    <p class="font-sans text-xs font-bold text-text-muted tracking-widest uppercase mt-1">Mahasiswa Ilmu Perpustakaan</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="window-card w-full min-h-[300px] flex flex-col relative shadow-lg">
+            <div class="window-header-bar window-header-centered">
+                <div class="flex-1"></div>
+                <div class="bg-white border border-gray-200 rounded text-[10px] px-4 py-1 text-gray-500 font-mono tracking-wide">
+                    haidaraee.space
+                </div>
+                <div class="flex-1 flex justify-end gap-[6px]">
+                    <div class="window-btn"><i class="fa-solid fa-user"></i></div>
+                    <div class="window-btn"><i class="fa-solid fa-minus"></i></div>
+                    <div class="window-btn"><i class="fa-solid fa-xmark"></i></div>
+                </div>
+            </div>
+
+            <div class="p-5 flex-1 flex flex-col bg-white/90 backdrop-blur-sm" id="dynamic-content">
+                
+                <div id="phase-menu" class="phase-content fade-in flex flex-col justify-center flex-1 gap-3">
+                    <button onclick="goToPhase('phase-about')" class="w-full py-3 bg-[#f9f9f9] border border-gray-100 rounded-lg hover:bg-pastel-blue hover:border-pastel-blue transition-colors font-display font-semibold text-sm text-center">
+                        profile
+                    </button>
+                    <button onclick="goToPhase('phase-links')" class="w-full py-3 bg-[#f9f9f9] border border-gray-100 rounded-lg hover:bg-pastel-pink hover:border-pastel-pink transition-colors font-display font-semibold text-sm text-center">
+                        social links
+                    </button>
+                    <button onclick="goToPhase('phase-guidelines')" class="w-full py-3 bg-[#f9f9f9] border border-gray-100 rounded-lg hover:bg-pastel-green hover:border-pastel-green transition-colors font-display font-semibold text-sm text-center">
+                        guidelines
+                    </button>
+                    <button onclick="goToPhase('phase-interest')" class="w-full py-3 bg-[#f9f9f9] border border-gray-100 rounded-lg hover:bg-pastel-yellow hover:border-pastel-yellow transition-colors font-display font-semibold text-sm text-center">
+                        interest
+                    </button>
+                </div>
+
+                <div id="phase-about" class="phase-content hide-phase fade-out w-full">
+                    <button onclick="goToPhase('phase-menu')" class="text-xs text-text-muted hover:text-text-main mb-4 flex items-center gap-2 font-semibold">
+                        <i class="fa-solid fa-arrow-left"></i> back
+                    </button>
+                    
+                    <h2 class="font-display font-bold text-lg mb-3">Tentang Saya</h2>
+                    
+                    <div class="text-sm leading-relaxed space-y-4">
+                        <p class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                            Halo! Berbasis di Jakarta, saat ini sedang menjalani semester 6 di jurusan Ilmu Perpustakaan.
+                        </p>
+                        
+                        <div>
+                            <h3 class="font-display font-semibold mb-2">Minat & Hobi</h3>
+                            <div class="space-y-2 text-gray-600">
+                                <div class="flex gap-2"><i class="fa-solid fa-book-open mt-1 text-pastel-blue"></i> <span>Eksplorasi perpustakaan dan toko buku di berbagai sudut kota.</span></div>
+                                <div class="flex gap-2"><i class="fa-solid fa-code mt-1 text-pastel-green"></i> <span>Ketertarikan besar pada dunia IT, khususnya di bidang Mobile Development.</span></div>
+                                <div class="flex gap-2"><i class="fa-solid fa-comments mt-1 text-pastel-pink"></i> <span>Suka bercerita, yapping tanpa henti, dan berbicara ngalor-ngidul.</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="phase-links" class="phase-content hide-phase fade-out w-full">
+                    <button onclick="goToPhase('phase-menu')" class="text-xs text-text-muted hover:text-text-main mb-4 flex items-center gap-2 font-semibold">
+                        <i class="fa-solid fa-arrow-left"></i> back
+                    </button>
+                    
+                    <h2 class="font-display font-bold text-lg mb-4">Tautan Sosial</h2>
+
+                    <div class="flex flex-col gap-3">
+                        <a href="#" class="social-link group flex items-center justify-between p-3 bg-gray-50 border border-gray-100 rounded-lg hover:bg-[#ffeef1] transition-colors">
+                            <span class="font-display font-semibold text-sm">Instagram</span>
+                            <i class="fa-brands fa-instagram text-xl social-icon text-gray-400 group-hover:text-[#E1306C]"></i>
+                        </a>
+                        <a href="#" class="social-link group flex items-center justify-between p-3 bg-gray-50 border border-gray-100 rounded-lg hover:bg-[#eaf4eb] transition-colors">
+                            <span class="font-display font-semibold text-sm">Letterboxd</span>
+                            <i class="fa-solid fa-film text-xl social-icon text-gray-400 group-hover:text-[#00D025]"></i>
+                        </a>
+                        <a href="#" class="social-link group flex items-center justify-between p-3 bg-gray-50 border border-gray-100 rounded-lg hover:bg-[#eaf1f8] transition-colors">
+                            <span class="font-display font-semibold text-sm">LinkedIn</span>
+                            <i class="fa-brands fa-linkedin text-xl social-icon text-gray-400 group-hover:text-[#0A66C2]"></i>
+                        </a>
+                        <a href="#" class="social-link group flex items-center justify-between p-3 bg-gray-50 border border-gray-100 rounded-lg hover:bg-[#f2f2f2] transition-colors">
+                            <span class="font-display font-semibold text-sm">GitHub</span>
+                            <i class="fa-brands fa-github text-xl social-icon text-gray-400 group-hover:text-[#181717]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="phase-guidelines" class="phase-content hide-phase fade-out w-full">
+                    <button onclick="goToPhase('phase-menu')" class="text-xs text-text-muted hover:text-text-main mb-4 flex items-center gap-2 font-semibold">
+                        <i class="fa-solid fa-arrow-left"></i> back
+                    </button>
+                    
+                    <h2 class="font-display font-bold text-lg mb-4">Panduan Interaksi</h2>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-pastel-blue">
+                            <h3 class="font-display font-bold mb-1">Menyapa Pertama Kali</h3>
+                            <p class="text-gray-600">Jangan ragu untuk langsung menyapa atau membalas cerita. Keterbukaan untuk diskusi santai maupun sekadar mengobrol ringan selalu ada.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-pastel-pink">
+                            <h3 class="font-display font-bold mb-1">Waktu Balasan</h3>
+                            <p class="text-gray-600">Balasan mungkin sedikit melambat di jam kuliah atau saat sedang fokus mengerjakan tugas kampus/coding. Kesabaran sangat dihargai.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-pastel-green">
+                            <h3 class="font-display font-bold mb-1">Topik Obrolan</h3>
+                            <p class="text-gray-600">Bebas bicara tentang apa saja. Dari ulasan film terbaru, diskusi teknologi untuk aplikasi mobile, atau sekadar obrolan acak tentang kejadian hari ini.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="phase-interest" class="phase-content hide-phase fade-out w-full h-[350px] overflow-y-auto pr-2">
+                    <button onclick="goToPhase('phase-menu')" class="text-xs text-text-muted hover:text-text-main mb-4 flex items-center gap-2 font-semibold sticky top-0 bg-white py-2 z-10 w-full shadow-sm">
+                        <i class="fa-solid fa-arrow-left"></i> back
+                    </button>
+                    
+                    <h2 class="font-display font-bold text-lg mb-4">Eksplorasi Minat</h2>
+
+                    <div class="mb-6">
+                        <h3 class="font-display font-semibold text-sm mb-3 px-2 bg-pastel-yellow inline-block rounded">Film Favorit</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[3/4] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/300x400/eeeeee/888888?text=Lewat+Djam+Malam" alt="Film" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Lewat Djam Malam</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[3/4] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/300x400/eeeeee/888888?text=Dead+Poet" alt="Film" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Dead Poet Society</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[3/4] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/300x400/eeeeee/888888?text=Totoro" alt="Film" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider text-truncate">My Neighbor Totoro</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[3/4] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/300x400/eeeeee/888888?text=Love+and+Pop" alt="Film" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Love and Pop</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="font-display font-semibold text-sm mb-3 px-2 bg-pastel-pink inline-block rounded">Musik Favorit</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-square overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/400x400/eeeeee/888888?text=Track+1" alt="Musik" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Lagu 1</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-square overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/400x400/eeeeee/888888?text=Track+2" alt="Musik" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Lagu 2</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-square overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/400x400/eeeeee/888888?text=Track+3" alt="Musik" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Lagu 3</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-square overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/400x400/eeeeee/888888?text=Track+4" alt="Musik" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Lagu 4</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="font-display font-semibold text-sm mb-3 px-2 bg-pastel-blue inline-block rounded">Buku Favorit</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[3/4] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/300x400/eeeeee/888888?text=Buku+1" alt="Buku" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Judul Buku 1</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[3/4] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/300x400/eeeeee/888888?text=Buku+2" alt="Buku" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Judul Buku 2</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[3/4] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/300x400/eeeeee/888888?text=Buku+3" alt="Buku" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Judul Buku 3</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[3/4] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/300x400/eeeeee/888888?text=Buku+4" alt="Buku" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Judul Buku 4</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <h3 class="font-display font-semibold text-sm mb-3 px-2 bg-pastel-green inline-block rounded">Anime Favorit</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[16/9] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/400x225/eeeeee/888888?text=Anime+1" alt="Anime" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Judul Anime 1</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[16/9] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/400x225/eeeeee/888888?text=Anime+2" alt="Anime" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Judul Anime 2</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[16/9] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/400x225/eeeeee/888888?text=Anime+3" alt="Anime" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Judul Anime 3</p>
+                            </div>
+                            <div class="group overflow-hidden rounded bg-gray-50 border border-gray-100 pb-2">
+                                <div class="aspect-[16/9] overflow-hidden mb-2">
+                                    <img loading="lazy" src="https://placehold.co/400x225/eeeeee/888888?text=Anime+4" alt="Anime" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                </div>
+                                <p class="text-[10px] font-bold px-2 text-center font-display uppercase tracking-wider">Judul Anime 4</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </section>
+
+        <div class="text-center mt-2 relative z-10">
+            <p class="text-[10px] text-gray-400 font-mono tracking-widest uppercase">( based on carrd layout )</p>
+        </div>
+
+    </main>
+
+    <script>
+        function goToPhase(targetPhaseId) {
+            const phases = document.querySelectorAll('.phase-content');
+            
+            phases.forEach(phase => {
+                if (!phase.classList.contains('hide-phase') && phase.id !== targetPhaseId) {
+                    phase.classList.remove('fade-in');
+                    phase.classList.add('fade-out');
+                    
+                    setTimeout(() => {
+                        phase.classList.add('hide-phase');
+                    }, 300);
+                }
+            });
+
+            const targetPhase = document.getElementById(targetPhaseId);
+            
+            setTimeout(() => {
+                targetPhase.classList.remove('hide-phase');
+                
+                if (targetPhaseId === 'phase-interest') {
+                    targetPhase.scrollTop = 0;
+                }
+                
+                void targetPhase.offsetWidth;
+                
+                targetPhase.classList.remove('fade-out');
+                targetPhase.classList.add('fade-in');
+            }, 350);
+        }
+    </script>
+</body>
+</html>
